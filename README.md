@@ -2,7 +2,7 @@
 
 [demo](http://new-parse.parseapp.com/)
 
-Whats inside:
+Whats inside: 
 
 * Parse RestAPI
 * Angular 1.4
