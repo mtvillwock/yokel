@@ -15,9 +15,13 @@ Whats inside:
 ## How to get Started
 
 1. Fork and clone this repo
-1. `$ npm install`
 1. `$ bower install`
 1. `$ nodemon`
+1. install `http-server` globally with npm
+  ```bash
+    $ npm install http-server -g
+  ```
+1. `$ http-server`
 
 
 ## Models

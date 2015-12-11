@@ -7,6 +7,7 @@
 angular.module('myApp.controllers', [])
   .controller('MainCtrl', function ($rootScope, $scope) {
     // INITIALIZATION AND NAVBAR LOGIC
+    
   })
 
   //POSTS
