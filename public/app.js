@@ -6,6 +6,8 @@
 
 angular.module('myApp', ['ui.router',
                          'ngResource',
+                         'ngAnimate', 
+                         'toastr',
                          'myApp.services',
                          'myApp.interceptors',
                          'myApp.controllers'])
