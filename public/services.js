@@ -12,4 +12,4 @@ app.factory('Post', function ($resource) {
   return $resource(url + '/classes/Post/:id', {id:'@id'}, {
     query: { isArray: false }
   });
-})
+}); 
