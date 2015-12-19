@@ -14,11 +14,20 @@ angular.module('myApp', ['ui.router',
 
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
-      .state('plans', {
+      .state('plans-index', {
         url: "/",
-        templateUrl: 'templates/plans-index.html',
+        templateUrl: "templates/plans-index.html",
         controller: 'PlansIndexCtrl'
-      });
+      })
+      .state('plans-new', {
+        url: "/plans/new",
+        templateUrl: 'templates/plans-new.html',
+        controller: 'PlansNewCtrl'
+      })
+      .state("plans-show", {
+        url: "plans/:id",
+        template: "THIS IS THE PLAN SHOW PAGE"
+      })
 
     $urlRouterProvider.otherwise("/");
 

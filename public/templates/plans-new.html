@@ -1,0 +1,44 @@
+<h1>Plans</h1>
+<form ng-submit="createPlan()">
+  <div class="form-group">
+    <label>Title</label>
+    <input type="text" ng-model="plan.title" class='form-control'/>
+  </div>
+  <div class="form-group">
+    <label>Description</label>
+    <textarea ng-model="plan.description" class='form-control'/></textarea>
+  </div>
+    <!-- TODO: Add Image upload -->
+    <!-- TODO: Add estimated cost -->
+    <!-- TODO: Add location autocomplete to get LatLng -->
+    <!-- TODO: Decide how to parse duration -->
+  <div class="form-group">
+    <label>Duration</label>
+    <input type="text" ng-model="plan.duration" class='form-control'/>
+  </div>
+  <div class="form-group">
+    <label>Location</label>
+    <input type="text" ng-model="plan.location" class='form-control'/>
+  </div>
+    <!-- Note: Tags are comma separated single word plan descriptors, e.g., "exercise, hike, outdoors" -->
+    <!-- TODO: finish implementing ng-tags-input module -->
+    <!-- https://github.com/mbenford/ngTagsInput -->
+  <div class="form-group">
+    <label>Tags</label>
+    <input ng-model="plan.tags" class='form-control'/>
+  </div>
+    <!-- TODO: Add "requirements" - checkboxes for things like "family friendly, overnight, bring food, cash only, etc." -->
+  <div class="text-right">
+    <button class="btn btn-primary" type="submit">Save</button>
+  </div>
+</form>
+
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="plan in plans">
+    <!-- TODO: add link for show route -->
+    <a ui-sref="plans-show({id: plan.id})">
+      <h3>{{ plan.title }}</h3>
+    </a>
+    <a class="pull-right" ng-click="deletePlan(plan, $index)">delete</a>
+  </li>
+</ul>

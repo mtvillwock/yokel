@@ -77,8 +77,13 @@ angular.module('myApp.controllers', [])
 
   })
 
-  //POSTS
-  .controller('PlansIndexCtrl', function ($rootScope, $scope, $http, Plan) {
+  //PLANS
+
+  .controller('PlansIndexCtrl', function() {
+    console.log("PlansIndexCtrl loaded")
+  })
+
+  .controller('PlansNewCtrl', function ($scope, $http, Plan) {
     // GET POSTS
     Plan.query(function(data) {
       $scope.plans = data.results;
@@ -87,10 +92,13 @@ angular.module('myApp.controllers', [])
 
     // CREATE PLAN
     $scope.createPlan = function() {
-      var user = JSON.parse(localStorage.getItem("currentUser"));
-      console.log(user)
+      // var user = JSON.parse(localStorage.getItem("currentUser"));
+      // console.log("current user: ", user)
+      // // {"opponents":{"__op":"AddRelation","objects":[{"__type":"Pointer","className":"Player","objectId":"Vx4nudeWn"}]}}
+      // var pointer = {"plans":{"__op":"AddRelation","objects":[{"__type":"Pointer","className":"User","objectId": user.objectId}]}}
+      // $scope.plan.author = pointer;
+      // console.log("plan data is: ", $scope.plan)
       var plan = new Plan($scope.plan);
-      plan.author = user.id;
       plan.$save(function(data) {
         Plan.get({ id: data.objectId }, function(plan) {
           $scope.plans.unshift(plan);
