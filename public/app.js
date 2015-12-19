@@ -16,9 +16,15 @@ angular.module('myApp', ['ui.router',
     $stateProvider
       .state('posts', {
         url: "/",
-        templateUrl: 'templates/posts-index.html',
-        controller: 'PostsIndexCtrl'
-      });
+        templateUrl: 'templates/cities-index.html',
+        controller: 'CitiesIndexCtrl'
+      })
+
+      .state('city', {
+        url: "/cities/:cityName",
+        templateUrl: 'templates/cities-show.html',
+        controller: 'CitiesShowCtrl'
+      })
 
     $urlRouterProvider.otherwise("/");
 
