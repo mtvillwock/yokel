@@ -94,12 +94,15 @@ angular.module('myApp.controllers', [])
     // CREATE PLAN
     $scope.createPlan = function() {
       var user = JSON.parse(localStorage.getItem("currentUser"));
-      console.log("current user: ", user)
-      // // {"opponents":{"__op":"AddRelation","objects":[{"__type":"Pointer","className":"Player","objectId":"Vx4nudeWn"}]}}
-      var pointer = {"plans":{"__op":"AddRelation","objects":[{"__type":"Pointer","className":"_User","objectId": user.objectId}]}}
-      $scope.plan.author = pointer;
+      console.log("current user: ", user);
       console.log("plan data is: ", $scope.plan)
       var plan = new Plan($scope.plan);
+      plan.set("author", {
+        __type: 'Pointer',
+        className: '_User',
+        objectId: user.objectId
+      });
+      console.log("created plan is: ", plan)
       plan.$save(function(data) {
         Plan.get({ id: data.objectId }, function(plan) {
           $scope.plans.unshift(plan);
