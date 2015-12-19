@@ -6,18 +6,18 @@
 
 angular.module('myApp', ['ui.router',
                          'ngResource',
-                         'ngAnimate', 
+                         'ngAnimate',
                          'toastr',
                          'myApp.services',
                          'myApp.interceptors',
                          'myApp.controllers'])
-  
+
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
-      .state('posts', {
+      .state('plans', {
         url: "/",
-        templateUrl: 'templates/posts-index.html',
-        controller: 'PostsIndexCtrl'
+        templateUrl: 'templates/plans-index.html',
+        controller: 'PlansIndexCtrl'
       });
 
     $urlRouterProvider.otherwise("/");

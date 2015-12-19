@@ -12,6 +12,7 @@ angular.module('myApp.controllers', [])
       $http.get('https://api.parse.com/1/users/me')
         .success(function(data) {
           $rootScope.currentUser = data;
+          localStorage.setItem("currentUser", JSON.stringify(data));
         })
         .error(function(data) {
           toastr.error(data.error, 'Error');
@@ -23,7 +24,7 @@ angular.module('myApp.controllers', [])
       getCurrentUser();
       toastr.success('Welcome Back!', 'Success');
     }
-  
+
     $scope.user = {};
 
     $scope.signup = function() {
@@ -77,28 +78,31 @@ angular.module('myApp.controllers', [])
   })
 
   //POSTS
-  .controller('PostsIndexCtrl', function ($scope, $http, Post) {
+  .controller('PlansIndexCtrl', function ($rootScope, $scope, $http, Plan) {
     // GET POSTS
-    Post.query(function(data) {
-      $scope.posts = data.results;
+    Plan.query(function(data) {
+      $scope.plans = data.results;
     });
-    
 
-    // CREATE POST
-    $scope.createPost = function() {   
-      var post = new Post($scope.post);
-      post.$save(function(data) {
-        Post.get({ id: data.objectId }, function(post) {
-          $scope.posts.unshift(post);
-          $scope.post = {};
+
+    // CREATE PLAN
+    $scope.createPlan = function() {
+      var user = JSON.parse(localStorage.getItem("currentUser"));
+      console.log(user)
+      var plan = new Plan($scope.plan);
+      plan.author = user.id;
+      plan.$save(function(data) {
+        Plan.get({ id: data.objectId }, function(plan) {
+          $scope.plans.unshift(plan);
+          $scope.plan = {};
         })
       })
-    }; 
+    };
 
-    // DELETE A POST
-    $scope.deletePost = function(post, index) {
-      Post.delete({ id: post.objectId }, function(data) {
-        $scope.posts.splice(index, 1);
+    // DELETE A PLAN
+    $scope.deletePlan = function(plan, index) {
+      Plan.delete({ id: plan.objectId }, function(data) {
+        $scope.plans.splice(index, 1);
       })
     }
   });
