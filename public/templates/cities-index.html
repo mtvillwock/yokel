@@ -1,0 +1,35 @@
+<div class="jumbotron">
+  <h1 class='text-center'>Be in the Know</h1>
+  <br>
+  <div class="col-sm-6 col-sm-offset-3">
+    <form ng-submit="searchPlans()">
+      <div class="input-group">
+        <input type="text" ng-model="term" class="form-control" placeholder="Search for a place or ">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">Go!</button>
+        </span>
+      </div><!-- /input-group -->
+    </form>
+    <a ui-sref="plans-new">Make a plan</a>
+  </div>
+  <br>
+  <br>
+  <br>
+</div>
+<div class="container">
+  <hr>
+  <div class="col-sm-3 text-center" ng-repeat="city in cities">
+    <div class="well">
+      <a href="/cities/{{city}}">
+        <h4>{{city}}</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="post in posts">
+    {{post.title}}
+    <a class="pull-right" ng-click="deletePost(post, $index)">delete</a>
+  </li>
+</ul>

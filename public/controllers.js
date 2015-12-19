@@ -15,6 +15,7 @@ angular.module('myApp.controllers', [])
           localStorage.setItem("currentUser", JSON.stringify(data));
         })
         .error(function(data) {
+          localStorage.removeItem('sessionToken')
           toastr.error(data.error, 'Error');
         })
     }
@@ -113,4 +114,13 @@ angular.module('myApp.controllers', [])
         $scope.plans.splice(index, 1);
       })
     }
-  });
+  })
+
+  .controller('CitiesIndexCtrl', function ($scope) {
+    $scope.cities = ['San Francisco', 'New York City', 'Los Angeles', 'Chicago', 'Austin']
+  })
+
+  .controller('CitiesShowCtrl', function ($scope, $routeParams, Plan) {
+       $scope.cityName = $routeParams.cityName;
+    $scope.plans = Plan.find({ city: $routeParams.cityName });
+  })

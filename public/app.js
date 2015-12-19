@@ -14,19 +14,22 @@ angular.module('myApp', ['ui.router',
 
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
-      .state('plans-index', {
+      .state("cities-index", {
         url: "/",
-        templateUrl: "templates/plans-index.html",
-        controller: 'PlansIndexCtrl'
+        templateUrl: 'templates/cities-index.html',
+        controller: 'CitiesIndexCtrl'
       })
+
+      .state('city', {
+        url: "/cities/:cityName",
+        templateUrl: 'templates/cities-show.html',
+        controller: 'CitiesShowCtrl'
+      })
+
       .state('plans-new', {
         url: "/plans/new",
         templateUrl: 'templates/plans-new.html',
         controller: 'PlansNewCtrl'
-      })
-      .state("plans-show", {
-        url: "plans/:id",
-        template: "THIS IS THE PLAN SHOW PAGE"
       })
 
     $urlRouterProvider.otherwise("/");
