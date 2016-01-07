@@ -26,6 +26,12 @@ angular.module('myApp', ['ui.router',
         controller: 'CitiesShowCtrl'
       })
 
+      .state('profile', {
+        url: "/profile",
+        templateUrl: 'templates/profile.html',
+        controller: 'ProfileCtrl'
+      });
+
     $urlRouterProvider.otherwise("/");
 
     $locationProvider.html5Mode({
