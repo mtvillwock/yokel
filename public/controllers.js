@@ -104,11 +104,24 @@ angular.module('myApp.controllers', [])
     }
   })
 
-  .controller('CitiesIndexCtrl', function ($scope) {
-    $scope.cities = ['San Francisco', 'New York City', 'Los Angeles', 'Chicago', 'Austin']
+  .controller('CitiesIndexCtrl', function ($scope, City) {
+    City.query(function(data) {
+      $scope.cities = data.results;
+    });
   })
 
-  // .controller('CitiesShowCtrl', function ($scope, $routeParams, Plan) {
-       // $scope.cityName = $routeParams.cityName;
-  //   $scope.plans = Plan.find({ city: $routeParams.cityName });
-  // })
+  .controller('CitiesShowCtrl', function ($scope, $routeParams, Plan) {
+    $scope.cityName = $routeParams.cityName;
+    $scope.plans = Plan.find({ city: $routeParams.cityName });
+  })
+
+  .controller('ProfileCtrl', function ($scope, $http, $rootScope) {
+    $http.get('https://api.parse.com/1/users/me')
+      .success(function(data) {
+        $rootScope.currentUser = data;
+      })
+      .error(function(data) {
+        localStorage.removeItem('sessionToken')
+        toastr.error(data.error, 'Error');
+      })
+  })

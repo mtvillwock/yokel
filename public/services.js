@@ -13,3 +13,10 @@ app.factory('Post', function ($resource) {
     query: { isArray: false }
   });
 }); 
+
+app.factory('City', function ($resource) {
+  var url = "https://api.parse.com/1";
+  return $resource(url + '/classes/City/:id', {id:'@id'}, {
+    query: { isArray: false }
+  });
+}); 
